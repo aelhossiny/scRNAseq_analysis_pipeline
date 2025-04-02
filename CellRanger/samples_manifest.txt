@@ -1,0 +1,2 @@
+12433-EC-1-GEX	/nfs/turbo/umms-eicarpen/ScSequencing_Runs/PulmMet/12433-EC/fastqs_12433-EC
+8329-EC-1-GEX_TCCGTTGGAT-GCGAGAACGT	/nfs/turbo/umms-eicarpen/ScSequencing_Runs/Liv_Met/1697/8329-EC/fastqs_8329-EC

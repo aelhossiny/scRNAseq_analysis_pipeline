@@ -1,0 +1,6 @@
+error: the following required arguments were not provided:
+  --create-bam <true|false>
+
+Usage: cellranger count --id <ID> --create-bam <true|false> --transcriptome <PATH> --fastqs <PATH> --sample <PREFIX> --localcores <NUM>
+
+For more information, try '--help'.

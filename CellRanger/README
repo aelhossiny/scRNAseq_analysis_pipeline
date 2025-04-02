@@ -1,0 +1,20 @@
+nThis is a workflow to align scRNAseq samples using specific cellranger version
+
+## Required Input
+1- Reference folder
+2- fastq files
+3- manifest file (if running processing samples)
+
+   
+## Set up
+1- 00_download_reference.sh is a script to download reference genome from 10x website that is used by cell ranger. You can instead download them here "https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-GRCh38-2020-A.tar.gz" and place them in turbo
+2- 01_manifest_generation.R is an R script to create .txt file from excel sheet for multi samples processing. The manifest should contain two columns with no header. The first column should be the sample name and the second column should be fastq files path (as the samples_manfist.txt file)
+3- For the sample name column in the samples manifest file (or the sample_id in the single sample script), you should use the sample name similar to the file name in the fastq folder. sample id is going to be the name of the fastq file all the way before SXX_RX_XXX.fastq.gz. For example if the fastq file is 12433-EC-1-GEX_S53_R1_001.fastq.gz, the sample id is going to be 12433-EC-1-GEX
+
+## Running the script
+1- You can use the single sample script or the multisample script after the samples manifest generation. 
+2- For both you have to modify the parameters used before running. For the single sample, you have to modify the ref, sample_id and fastqsDir. For the multiple samples script, you have to modify the ref, samples_manifest and outputDir (or comment it out if you wish to keep the output in the same directory)
+3- to run the script, login to GreatLakes, cd to this directory and use 'sbatch 02_cellranger_multi_samples.sh' or 'sbatch 02_cellranger_single_sample.sh'
+
+
+
