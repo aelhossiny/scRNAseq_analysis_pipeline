@@ -111,6 +111,10 @@ suppressPackageStartupMessages({
   library(reticulate)
   library(qs)
 })
+
+sc <- import("scanpy", convert = F)
+anndata <- import("anndata", convert = F)
+scipy <- import('scipy', convert = F)
 ```
 
 # Ambient RNA contamination correction
