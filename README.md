@@ -112,6 +112,7 @@ suppressPackageStartupMessages({
   library(qs)
 })
 
+use_condaenv("/path/to/conda/envs/single_cell/", required = TRUE)
 sc <- import("scanpy", convert = F)
 anndata <- import("anndata", convert = F)
 scipy <- import('scipy', convert = F)
