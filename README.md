@@ -198,6 +198,27 @@ scrublet_res <- py_to_r(adata$obs) %>% select(doublet_score, predicted_doublet)
 scData <- AddMetaData(scData, scrublet_res)
 ```
 
+If using the batch_key argument doesn't work, we can manually apply this on sample-by-sample basis using the following snippet
+
+```
+scrublet_res <- lapply(unique(ref$sample_id), function(x){
+  message(x)
+  sample <- subset(ref, subset = sample_id == x)
+  adata <- anndata$AnnData(
+    X = scipy$sparse$csr_matrix(
+      Matrix::t(LayerData(sample, assay = 'RNA', layer = "counts"))
+    )
+  )
+  sc$pp$scrublet(adata)
+  scrublet_res <- py_to_r(adata$obs) %>% 
+    select(doublet_score, predicted_doublet)
+  rownames(scrublet_res) <- colnames(sample)
+  scrublet_res$predicted_doublet <- unlist(scrublet_res$predicted_doublet)
+  return(scrublet_res)
+}) %>% bind_rows()
+scData <- AddMetaData(scData, scrublet_res)
+```
+
 ## If the previous code doesn’t work you can save the adata object and run scrublet using the python code in `scrublet.py`
 
 ``` r
