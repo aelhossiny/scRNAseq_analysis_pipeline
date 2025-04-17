@@ -193,6 +193,8 @@ adata <- anndata$AnnData(
   ),
   obs = scData@meta.data
 )
+adata$var_names = rownames(scData)
+adata$obs_names = colnames(scData)
 sc$pp$scrublet(adata, batch_key = 'sample_id')
 scrublet_res <- py_to_r(adata$obs) %>% select(doublet_score, predicted_doublet)
 scData <- AddMetaData(scData, scrublet_res)
