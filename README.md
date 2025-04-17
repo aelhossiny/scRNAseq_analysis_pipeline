@@ -95,6 +95,7 @@ pip install scrublet
 pip install scvi-tools
 pip install scanpy
 pip install scanpy
+pip install jupyter
 ```
 
 ## R Packages
