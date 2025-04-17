@@ -221,10 +221,22 @@ scrublet_res <- lapply(unique(scData$sample_id), function(x){
 scData <- AddMetaData(scData, scrublet_res)
 ```
 
-## If the previous code doesn’t work you can save the adata object and run scrublet using the python code in `scrublet.py`
-
-``` r
+If the previous code doesn’t work you can save the adata object as follows in R
+```
 adata.write("outputs/scRNASeq_integration/GoL_ref.h5ad")
+```
+
+and run scrublet using the python code below
+```
+import scanpy as sc
+adata = sc.read("")
+sc.pp.scrublet(adata, batch_key= 'sample_id')
+adata.obs[['doublet_score', 'predicted_doublet']].to_csv("outputs/scRNASeq_integration/scrublet_analysis.csv")
+```
+
+Then you read this back in R
+
+``` 
 scrublet_res <- read.csv("outputs/scRNASeq_integration/scrublet_analysis.csv")
 scData <- AddMetaData(scData, scrublet_res)
 ```
