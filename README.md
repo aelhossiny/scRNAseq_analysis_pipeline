@@ -201,9 +201,9 @@ scData <- AddMetaData(scData, scrublet_res)
 If using the batch_key argument doesn't work, we can manually apply this on sample-by-sample basis using the following snippet
 
 ```
-scrublet_res <- lapply(unique(ref$sample_id), function(x){
+scrublet_res <- lapply(unique(scData$sample_id), function(x){
   message(x)
-  sample <- subset(ref, subset = sample_id == x)
+  sample <- subset(scData, subset = sample_id == x)
   adata <- anndata$AnnData(
     X = scipy$sparse$csr_matrix(
       Matrix::t(LayerData(sample, assay = 'RNA', layer = "counts"))
